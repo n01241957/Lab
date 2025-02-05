@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Smart Home Devices</title>
+</head>
+<body>
+    <h1>Smart Home Devices</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="device : ${devices}">
+            <td th:text="${device.id}"></td>
+            <td th:text="${device.name}"></td>
+            <td th:text="${device.type}"></td>
+            <td th:text="${device.status ? 'ON' : 'OFF'}"></td>
+            <td>
+                <form action="/toggle-device" method="post">
+                    <input type="hidden" name="id" th:value="${device.id}">
+                    <button type="submit">Toggle</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+</html>
